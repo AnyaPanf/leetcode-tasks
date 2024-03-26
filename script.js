@@ -21,7 +21,7 @@ const containsDuplicate = (nums) => {
     }).length) {
         return true
     } else {
-        false
+        return false
     }
 }
 containsDuplicate([1, 2, 3, 4])
