@@ -49,17 +49,51 @@
 
 // Output: [0,1]
 
-const twoSum = (nums, target) => {
-    const myMap = new Map()
+// const twoSum = (nums, target) => {
+//     const myMap = new Map()
 
-    for (let i = 0; i < nums.length; i++) {
-        let secondVar = target - nums[i]
+//     for (let i = 0; i < nums.length; i++) {
+//         let secondVar = target - nums[i]
 
-        if (myMap.get(secondVar) === undefined) {
-            myMap.set(nums[i], i)
-        } else {
-            return [myMap.get(secondVar), i]
+//         if (myMap.get(secondVar) === undefined) {
+//             myMap.set(nums[i], i)
+//         } else {
+//             return [myMap.get(secondVar), i]
+//         }
+//     }
+// };
+// console.log(twoSum([3,3], 6));
+
+
+// Begin by initializing a stack.
+// Iterate, through the given string.
+// If an open parenthesis is encountered, push it onto the stack.
+// If a closing parenthesis is encountered check if it matches the element of the stack.
+// If they match, pop the element from the stack; otherwise conclude that the parentheses are not balanced 
+// and return false.
+// After iterating through all characters in the string if the stack is empty it means all parentheses have 
+// been correctly closed so return true.
+
+
+const isValid = (s) => {
+    const pairs = {
+        '(': ')',
+        '{': '}',
+        '[': ']',
+    };
+    const stack = [];
+
+    for (el of s) {
+        if (pairs[el] !== undefined) {
+            stack.push(el)
+        } else if (el === ")" ||
+            el === "}" ||
+            el === "]") {
+            if (pairs[stack.pop()] !== el) {
+                return false;
+            }
         }
     }
+    return stack.length === 0
 };
-// console.log(twoSum([3,3], 6));
+isValid('()[]{}')
